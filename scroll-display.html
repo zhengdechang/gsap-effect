@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP ScrollTrigger Example</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@200;300;400;500;600&display=swap");
+:root {
+  font-size: 62.5%;
+  font-family: "Encode Sans Condensed", sans-serif;
+}
+body {
+  background-color: #000;
+  height: 500vh;
+  font-size: 1.6rem;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.header h1 {
+  font-size: 10vw;
+  color: #9be9e9;
+  font-weight: 300;
+}
+
+article {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 2px solid #ff6600;
+  color: #9be9e9;
+  padding: 3rem;
+  margin: 1rem;
+  font-size: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+}
+
+a {
+  display: grid;
+  place-items: center;
+  background: #ff6600;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  font-size: 1rem;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #9be9e9;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b7efff;
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from("article", {
+                scrollTrigger: {
+                    trigger: ".cards",
+                    start: "top top",
+                    end: "bottom bottom",
+                    //Show where trigger starts & stops
+                    markers: true,
+                    scrub: 1
+                },
+
+                stagger: { amount: 0.5 },
+                scale: 0,
+                duration: 3
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+<section class="header">
+    <h1>ScrollTrigger</h1>
+</section>
+<section class="cards">
+    <article>
+        <h1>First Card</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, …</p>
+        <a href="">Learn more</a>
+    </article>
+    <article>
+        <h1>Second Card</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, …</p>
+        <a href="">Learn more</a>
+    </article>
+    <article>
+        <h1>Third Card</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, …</p>
+        <a href="">Learn more</a>
+    </article>
+</section>
+</body>
+
+</html>
