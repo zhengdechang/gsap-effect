@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP ScrollTrigger Example</title>
+    <style>
+        body {
+            height: 300vh;
+            /* 增加页面高度以便滚动 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0000ff;
+        }
+
+        .box {
+            width: 70vw;
+            height: 50vh;
+            font-size: 24px;
+            align-items: flex-start;
+            background-color: #f2f6fdeb;
+            border-radius: 24px;
+            box-shadow: 0 0.602px 0.602px -0.833px #1723640f,
+                0 2.289px 2.289px -1.667px #1723640f,
+                0 10px 10px -2.5px #1723640f;
+            display: flex;
+            justify-content: flex-start;
+            overflow: visible;
+            padding: 0;
+            position: relative;
+            transform: perspective(1200px) translateX(0px) translateY(0px) scale(1) rotate(0deg) rotateX(16deg) rotateY(0deg) skewX(0deg) skewY(0deg) translateZ(0px);
+            opacity: 0.6;
+            /* 初始倾斜和透明度 */
+            transition: transform 0.5s, opacity 0.5s;
+            /* 添加过渡效果 */
+        }
+
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="content">Build Generative AI Apps with Our Advanced Open-Source Stack</div>
+    </div>
+
+    <!-- 引入GSAP和ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+    <script>
+        // 注册ScrollTrigger插件
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 选择要动画的元素
+        const box = document.querySelector(".box");
+
+        // 创建动画
+        gsap.to(box, {
+            scrollTrigger: {
+                trigger: box, // 触发元素
+                start: "top bottom", // 开始位置
+                end: "center center", // 结束位置
+                scrub: true, // 根据滚动条位置实时更新动画
+                onUpdate: (self) => {
+                    // 获取当前滚动进度
+                    const progress = self.progress;
+
+                    // 根据滚动进度平滑过渡 rotateX 和 opacity 值
+                    const newRotateX = gsap.utils.interpolate(16, 0, progress);
+                    const newOpacity = gsap.utils.interpolate(0.6, 1, progress);
+
+                    // 直接设置 box 的 transform 和 opacity 属性
+                    box.style.transform = `perspective(1200px) translateX(0px) translateY(0px) scale(1) rotate(0deg) rotateX(${newRotateX}deg) rotateY(0deg) skewX(0deg) skewY(0deg) translateZ(0px)`;
+                    box.style.opacity = newOpacity;
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
