@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Animation</title>
+    <style>
+        body {
+            background-color: #000;
+            height: 500vh;
+            font-size: 1.6rem;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+            perspective: 1200px;
+            margin-top: 100vh;
+        }
+
+        .card {
+            width: 45%;
+            transition: all 0.5s ease;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 70vh;
+        }
+
+        .card+.card {
+            margin-left: 20px;
+            /* 增加卡片之间的距离 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card" id="card1">
+            <!-- Card content -->
+            <h2>Chatbots and AI assistants for Specific Industries</h2>
+            <p>Deploy customized chatbots or AI assistants for specific industries.</p>
+        </div>
+        <div class="card" id="card2">
+            <!-- Card content -->
+            <h2>Creative Document Generation Without Length Limits</h2>
+            <p>Generate clear, logical documents from knowledge bases. Summarize long documents with ease.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial animations to separate cards
+        gsap.set("#card1", { x: -150, opacity: 0.6, rotate: -8, rotateX: 8, rotateY: 8 });
+        gsap.set("#card2", { x: 150, opacity: 0.6, rotate: 8, rotateX: -8, rotateY: -8 });
+
+        // ScrollTrigger animations to bring cards to normal position
+        gsap.to("#card1", {
+            scrollTrigger: {
+                trigger: ".container",
+                start: "top bottom",
+                end: "top center",
+                  scrub: true,
+                ease: "power2.inOut"
+            },
+            x: 0,
+            opacity: 1,
+            rotate: 0,
+            rotateX: 0,
+            rotateY: 0
+        });
+
+        gsap.to("#card2", {
+            scrollTrigger: {
+                trigger: ".container",
+                start: "top bottom",
+                end: "top center",
+                scrub: true,
+                ease: "power2.inOut"
+            },
+            x: 0,
+            opacity: 1,
+            rotate: 0,
+            rotateX: 0,
+            rotateY: 0
+        });
+    </script>
+
+</body>
+
+</html>
