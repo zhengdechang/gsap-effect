@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Author: Devin
+ * @Date: 2024-07-09 15:21:37
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +39,8 @@
 <body>
     <div class="cards">
         <div class="card" style="background-color: lightblue; top: 0px;"></div>
-        <div class="card" style="background-color: lightgreen; top: 50px;"></div>
-        <div class="card" style="background-color: lightcoral; top: 100px;"></div>
+        <div class="card" style="background-color: lightgreen; top: 20px;"></div>
+        <div class="card" style="background-color: lightcoral; top: 40px;"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
@@ -48,13 +53,13 @@
         cards.forEach((card, index) => {
             ScrollTrigger.create({
                 trigger: card,
-                start: "top 30px",
+                start: "center center",
                 pin: true,
                 pinSpacing: false,
                 markers: true,
                 id: `pin-${index}`,
                 endTrigger: cards[cards.length - 1],
-                end: "bottom top+=10px",
+                end: "center center",
                 invalidateOnRefresh: true,
             });
         });
